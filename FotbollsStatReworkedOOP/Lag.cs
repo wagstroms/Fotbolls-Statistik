@@ -117,27 +117,35 @@ namespace FotbollsStatReworkedOOP
         }
         public void ProcessStats(int mål, int insläpp, int hemlag, int bortlag) 
         {
-            Program.lagLista[hemlag].Matcher++;
-            Program.lagLista[bortlag].Matcher++;
+            Program.lagLista[hemlag-1].Matcher++;
+            Program.lagLista[bortlag-1].Matcher++;
+            
+            Program.lagLista[hemlag - 1].Mål += mål;
+            Program.lagLista[bortlag - 1].Mål += insläpp;
+            
+            Program.lagLista[bortlag - 1].Insläptta += mål;
+            Program.lagLista[hemlag - 1].Insläptta += insläpp;
+            
+            
 
             if (mål > insläpp)
             {
-                Program.lagLista[hemlag].Poäng += 3;
-                Program.lagLista[hemlag].Vinster++;
-                Program.lagLista[bortlag].Förluster++;
+                Program.lagLista[hemlag-1].Poäng += 3;
+                Program.lagLista[hemlag-1].Vinster++;
+                Program.lagLista[bortlag-1].Förluster++;
             }
             else if (mål < insläpp)
             {
-                Program.lagLista[bortlag].Poäng += 3;
-                Program.lagLista[bortlag].Vinster++;
-                Program.lagLista[hemlag].Förluster++;
+                Program.lagLista[bortlag-1].Poäng += 3;
+                Program.lagLista[bortlag-1].Vinster++;
+                Program.lagLista[hemlag - 1].Förluster++;
             }
             else if (mål == insläpp)
             {
-                Program.lagLista[hemlag].Poäng++;
-                Program.lagLista[bortlag].Poäng++;
-                Program.lagLista[hemlag].Lika++;
-                Program.lagLista[bortlag].Lika++;
+                Program.lagLista[hemlag - 1].Poäng++;
+                Program.lagLista[bortlag - 1].Poäng++;
+                Program.lagLista[hemlag - 1].Lika++;
+                Program.lagLista[bortlag - 1].Lika++;
             }
         }
 
