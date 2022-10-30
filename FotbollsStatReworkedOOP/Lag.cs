@@ -22,6 +22,11 @@ namespace FotbollsStatReworkedOOP
 
         public void Sort()
         {
+            foreach (Lag x in Program.lagLista)
+            {
+                x.Målskillnad = x.Mål - x.Insläptta;
+            }
+            
             Program.lagLista = Program.lagLista.OrderByDescending(x => x.Poäng)
                 .ThenByDescending(x => x.Målskillnad)
                 .ThenByDescending(x => x.Mål)
